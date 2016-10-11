@@ -1,0 +1,13 @@
+Ein Hash ist ein assoziatives Array, d.h. ein Array mit einem selbstdefinierbaren Index.
+	cars = { 'eins' => 'Audi', 'zwei' => 'Opel'}
+
+Der Entwickler hat aus Performance-Gründen für den Hash-Index das Symbol vorgesehen:
+	cars = { :eins => 'Audi', :zwei => 'Opel'}
+
+Kurzschreibweise:
+	cars = { eins: 'Audi', zwei: 'Opel'}
+
+Iteration für einen Hash:
+	cars.each do |key, val|
+		puts "Index: #{key} ist ein #{val}"
+	end

@@ -22,3 +22,22 @@ Methoden von Arrays
 		seats.empty?
 	Löschen von Element
 		seats.delete_at(3)
+
+
+Iterationa-Methoden:
+var = %w(ich u du)
+var.each
+	Methode zum durchlafen der einzelnen Elemente
+
+var.select
+	Methode, die im Block einen Boolischen Wert erwartet und bei True den Inhalt zurückgibt
+		z.B. ret = var.select {|v| v.size > 1}
+		ret enthält ['ich', 'du']
+
+var.reject
+	Gegenteil von select
+	ret = var.reject {|v| v.size > 1}
+	ret enthält ['u']
+
+var.sort
+	gibt ein sortiertes Array zurück
