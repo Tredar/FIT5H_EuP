@@ -46,10 +46,11 @@
 #ergebnis = { :diff => ["Federball", "Whisky", "Fussball", "Bier"], :match => ["Programmieren"]}
 
 #a
-numbers = {'0': 15, '1': 16, '2': 17, '3': 18, '4': 19, '5': 20}.to_a
+numbers = (15..20).to_a
 puts numbers
 
 #b
+numbers = {'0': 15, '1': 16, '2': 17, '3': 18, '4': 19, '5': 20}.to_a
 numbers.each do |key, val|
 	puts "Index: #{key} - Wert: #{val}"
 end
