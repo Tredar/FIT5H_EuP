@@ -20,18 +20,10 @@ class Kunde
 
 	def initialize(name)
 		@name = name
-		@adresse =""
-	end
-	def name_cap(name)
-		namesplit = name.split
-		@nameeinzelnt = ""
-		namesplit.each do |teilstring|
-		@nameeinzelnt = @nameeinzelnt + " " + teilstring.capitalize
-		end
-		@nameeinzelnt.strip
+
 	end
 	def adresse
-		@nameeinzelnt.strip + " " + @adresse
+		@name + " " + @adresse
 	end
 end
 
@@ -45,8 +37,8 @@ class Kredit
 end
 
 Kunde1 = Kunde.new("Theo Sommer")
-Kunde1.name = "theo sonnenschein"
-puts Kunde1.name_cap(Kunde1.name)
+Kunde1.name = "Theo Sonnenschein"
+puts Kunde1.name
 Kunde1.gehalt = 2000
 Kunde1.adresse = "Hermelinweg 11, 22159 Hamburg"
 puts Kunde1.adresse
