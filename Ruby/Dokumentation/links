@@ -1,1 +1,5 @@
-Dokumentation für 
+Links:
+	
+
+	ls --help
+	ls --help | less

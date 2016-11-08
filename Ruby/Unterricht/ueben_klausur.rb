@@ -94,3 +94,7 @@ Fahrer1 = Driver.new("Theo")
 Fahrer1.add_cars(Cars[0])
 Fahrer1.add_cars(Cars2[0])
 Fahrer1.show_cars
+
+
+
+cars.sort_by{|typ,ps| ps}
