@@ -1,0 +1,31 @@
+Erstellen Sie eine Applikation flix im Projekt-Verzeichnis
+	rails new flix
+	cd flix
+
+Starten Sie die App
+	gemfile: auskommentieren von therubyracer
+	rails s
+
+Erstellen Sie einen Controller mit der Bezeichnung movies
+	rails g controller movies
+
+#rails g controller movies
+	Datei config/routers.rb im Editor öffnen
+		get "movies" => "movies#index"
+
+Erstellen Sie ein Route zur index-Action des movies-Controllers
+	Datei app/controllers/movies_conroller.rb öffnen
+	def index
+	end
+
+Erstellen Sie eine INDEX-Action
+
+Erstellen Sie ein index-Template zur AUsgabe von:
+<h1>Movies</h1>
+<ul>
+  <li>Iron Man</li>
+  <li>Superman</li>
+  <li>Spider-Man</li>
+</ul>
+
+Dynamisieren Sie die AUsgabe mit einem Array @movies im Controller

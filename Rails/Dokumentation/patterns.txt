@@ -1,0 +1,18 @@
+MVC
+	Model - View - Controller auf verschiedenen, voneinander getrennten Ebenen
+
+Convention Over Configuration
+	Es gibt Regeln die eine Automatisierung durch den rails gernerator ermöglichen
+	z.B.
+		controller sind immer im Plural und die Klasse wird im Camelcasing benannt: 
+			movies_controller.rv
+				class MoviesController
+
+		ḿodels sind immer im Singular bennant:
+			app/models/event.rb
+				class Event
+		Die Tabellen, die zu den Models gehören sind immer im Plural
+			Tabelle heißt: events
+
+Prinzip der geringsten überraschung
+	Der User sollte Funktionen und Methoden erraten können
