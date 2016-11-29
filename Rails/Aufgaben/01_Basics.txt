@@ -20,7 +20,7 @@ Erstellen Sie ein Route zur index-Action des movies-Controllers
 
 Erstellen Sie eine INDEX-Action
 
-Erstellen Sie ein index-Template zur AUsgabe von:
+Erstellen Sie ein index-Template zur Ausgabe von:
 <h1>Movies</h1>
 <ul>
   <li>Iron Man</li>

@@ -2,10 +2,10 @@
 
 one:
   title: MyString
-  rating: MyString
-  total_gross: 9.99
+  desription: MyString
+  release_on: 2016-11-29 11:00:41
 
 two:
   title: MyString
-  rating: MyString
-  total_gross: 9.99
+  desription: MyString
+  release_on: 2016-11-29 11:00:41

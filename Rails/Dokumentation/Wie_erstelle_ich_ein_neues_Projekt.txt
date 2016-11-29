@@ -1,0 +1,35 @@
+1. In der Console Ordner öffen wo das neue Projekt erstellt werden soll...
+
+2. rails new name eingeben
+
+3. Im Projekt Ordner im Ordner Config in der Datei routes.rb das gem in zeile 18  the rubyracer auskommentieren 
+
+4. bundle install in der console eingeben
+
+5. rails g controller events in der Console eingeben
+
+6. im Verzeichnis routes.rb die Ressouces eingeben ?!
+Datei config/routers.rb im Editor öffnen
+		get "movies" => "movies#index"
+7. In der name_controller die Methode Index hinzufügen
+def index
+	
+end
+8. Im Verzeichnis View events auswählen und dann index.html.erb erstellen und dort html code eingeben (eine Überschrift oder so)
+
+9. server starten mit rails s ( ggf rails s -p3001 um den Port einzugeben)
+
+10. Im Browser http://localhost:3001 eingeben und dort kommt die seite (vll /events eingeben)
+
+11. rails g model name  (event) (einzahl schreiben) und dahinter z.B. name:string (rails g model event name:string)
+
+12. In dem Verzeichnis db / migrate die Datei mit vielen zahlen öffnen und prüfen ob alles ok ist (ggf. was ergänzen)
+
+13. mit rake db:migrate die Version der Tabelle aktuallisieren bzw. erstellen.
+
+14. In der Console rails g migration AddFieldsToMovies rating: string total_gross: datetime
+(Movies in dem AddFieldsTo ist der Name der rest ist das was neu hinzugefügt werden soll)
+
+15. In der seeds.rb z.B. 
+
+
