@@ -1,5 +1,28 @@
 <h1>Movies</h1>
 <table>
-<tr> @movie.each do
 
+	<tr>
+		<th>Titel</th>
+		<th>Beschreibung</th>
+		<th>Bewertung</th>
+		<th>Erscheinungs Datum</th>
+		<th>Umsatz</th>
+		<th>Show</th>
+		<th>Edit</th>
+		<th>Del</th>
+	</tr>
+<% @movies.each do |movie| %>
+		<tr>
+			<td><%= movie.title %></td>
+			<td><%= truncate(movie.description, length: 40) %></td>
+			<td><%= movie.rating %></td>
+			<td><%= movie.released_on %></td>
+			<td><%= movie.total_gross %></td>
+			<td><%= link_to "Show", movie_path(movie.id) %></td>
+			<td><%= link_to "Edit", edit_movie_path(movie.id) %></td>
+			<td><%= link_to "Del", movie_path(movie.id), method: :delete, data: {confirm: "Sicher Löschen?"} %></td>
+		</tr>
+	<% end %>
 </table>
+
+<p><%= link_to "Neues Movie", new_movie_path  %></p>

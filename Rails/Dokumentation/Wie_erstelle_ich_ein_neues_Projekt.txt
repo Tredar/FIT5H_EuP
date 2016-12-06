@@ -30,6 +30,7 @@ end
 14. In der Console rails g migration AddFieldsToMovies rating: string total_gross: datetime
 (Movies in dem AddFieldsTo ist der Name der rest ist das was neu hinzugefügt werden soll)
 
-15. In der seeds.rb z.B. 
+15. In der seeds.rb folgedes eingeben:
+z.B. Event.create(name: "Sommerferien", description: "Schwitzen , baden, schwitzen" , start_date: 100.days.from_now, location: "Hamburg" , price: 1000.00 )
 
 
