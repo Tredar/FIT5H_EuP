@@ -34,3 +34,45 @@ end
 z.B. Event.create(name: "Sommerferien", description: "Schwitzen , baden, schwitzen" , start_date: 100.days.from_now, location: "Hamburg" , price: 1000.00 )
 
 
+
+19.12.2016
+
+Im Rails_app Verzeichnis
+rails g scaffold registration name:string email:string how_heard:string event:references
+
+rake db:migrate
+
+has_many :registrations
+bei models/event.rb in die zweite Zeile geschrieben (in die App...)
+
+in Rails c
+r = Registration.new
+e = Event.first
+r.event = e
+r.event
+r.event.name
+e.registrations
+r2 = e.registrations.new
+r2.save
+exit
+
+in models/event.rb zweite Zeile erweitert ... sieht jetzt so aus:
+has_many :registrations, dependent: :destroy
+
+in models/registration.rb in die class .....
+    belongs_to :event
+
+  HOW_HEARD_OPTIONS = [
+  	'Newsletter', 
+  	'Blog Post', 
+  	'Twitter', 
+  	'Other'
+  ]
+
+  validates :name, presence: true
+  validates :email, format: { with: /(\S+)@(\S+)/ }
+  validates :how_heard, inclusion: { in: HOW_HEARD_OPTIONS }
+
+...... hinzufügen
+
+Bei Aufgaben: Aufgabe 7 erstellt siehe Github
