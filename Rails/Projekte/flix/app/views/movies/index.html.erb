@@ -1,12 +1,15 @@
-<h1>Movies</h1>
-<table>
+<h1><%= pluralize(@movies.count, "Movies")%></h1>
 
+<h1>Movies</h1>
+
+<table>
 	<tr>
 		<th>Titel</th>
 		<th>Beschreibung</th>
 		<th>Bewertung</th>
 		<th>Erscheinungs Datum</th>
 		<th>Umsatz</th>
+		<th>Kritik</th>
 		<th>Show</th>
 		<th>Edit</th>
 		<th>Del</th>
@@ -18,6 +21,7 @@
 			<td><%= movie.rating %></td>
 			<td><%= movie.released_on %></td>
 			<td><%= movie.total_gross %></td>
+			<td><%= link_to "Kritik", movie_reviews_path(movie.id) %></td>
 			<td><%= link_to "Show", movie_path(movie.id) %></td>
 			<td><%= link_to "Edit", edit_movie_path(movie.id) %></td>
 			<td><%= link_to "Del", movie_path(movie.id), method: :delete, data: {confirm: "Sicher Löschen?"} %></td>
