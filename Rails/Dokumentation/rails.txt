@@ -16,3 +16,12 @@ rails d controller movies
 
 rails g model event name:string location:string price:decimal
 	es werden Dateien zur Erstellung einer Tabelle erzeugt, mit dem Namen events und den Spalten: name, location, price
+
+
+rails g scaffold event name:string location:string price:decimal
+	es wird eine komplette Resource erstellt; d.h.:
+	- In routes.rb wird die Zeile hinzugefügt:
+		resources :event
+	- Dateien zur Erstellung einer Tabelle erzeugt, mit dem Namen events und den Spalten: name, location, price
+	- Controller mit allen Actions
+	- View-Ordner events mit allen Dateien
