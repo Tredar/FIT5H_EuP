@@ -2,7 +2,7 @@
 
 2. rails new name eingeben
 
-3. Im Projekt Ordner im Ordner Config in der Datei routes.rb das gem in zeile 18  the rubyracer auskommentieren 
+3. Im Projekt in der Datei Gemfile das gem in Zeile 18  the rubyracer auskommentieren 
 
 4. bundle install in der console eingeben
 
@@ -27,7 +27,7 @@ end
 
 13. mit rake db:migrate die Version der Tabelle aktuallisieren bzw. erstellen.
 
-14. In der Console rails g migration AddFieldsToMovies rating: string total_gross: datetime
+14. In der Console rails g migration AddFieldsToMovies rating:string total_gross: datetime
 (Movies in dem AddFieldsTo ist der Name der rest ist das was neu hinzugefügt werden soll)
 
 15. In der seeds.rb folgedes eingeben:
