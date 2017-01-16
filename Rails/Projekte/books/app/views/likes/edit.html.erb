@@ -2,6 +2,5 @@
 
 <%= render 'form', like: @like %>
 
-<%= link_to 'Show', book_likes_path(@book.id, @like.id) %> |
+<%= link_to 'Show', book_like_path(@book.id, @like.id) %> |
 <%= link_to 'Back', book_likes_path(@book.id) %>
-

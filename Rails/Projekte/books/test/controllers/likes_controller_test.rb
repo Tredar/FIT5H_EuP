@@ -17,7 +17,7 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create like" do
     assert_difference('Like.count') do
-      post likes_url, params: { like: { quality: @like.quality } }
+      post likes_url, params: { like: { book_id: @like.book_id, quality: @like.quality } }
     end
 
     assert_redirected_to like_url(Like.last)
@@ -34,7 +34,7 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update like" do
-    patch like_url(@like), params: { like: { quality: @like.quality } }
+    patch like_url(@like), params: { like: { book_id: @like.book_id, quality: @like.quality } }
     assert_redirected_to like_url(@like)
   end
 

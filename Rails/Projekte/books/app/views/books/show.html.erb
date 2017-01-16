@@ -20,10 +20,5 @@
   <%= @book.published_on %>
 </p>
 
-<p>
-  <strong>Avarage Likes:</strong>
-  <%= average(@book) %>
-</p>
-
 <%= link_to 'Edit', edit_book_path(@book) %> |
 <%= link_to 'Back', books_path %>
