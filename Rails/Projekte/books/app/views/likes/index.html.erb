@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Likes</h1>
+<h1>Likes for <%= @book.title %></h1>
 
 <table>
   <thead>
@@ -22,6 +22,11 @@
   </tbody>
 </table>
 
-<br>
+<p>
+  <strong>Avarage Likes:</strong>
+  <%= average(@book) %>
+</p>
 
-<%= link_to 'New Like', new_book_like_path %>
+<%= link_to 'New Like', new_book_like_path %> |
+<%= link_to 'Back to Books', books_path %>
+
