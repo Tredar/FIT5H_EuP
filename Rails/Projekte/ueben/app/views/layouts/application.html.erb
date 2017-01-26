@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ueben</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+  </head>
+
+  <body>
+    <div class="row">
+      <%= image_tag "logo.png" %>
+      <div class="row float-right">
+      
+      <%= render 'layouts/top_bar' %>
+      </div>
+      <div class="row float-left">
+      <%= render 'layouts/side_bar' %>
+      </div>
+      <div class="medium-9 columns">
+          <%= yield %>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </body>
+</html>
