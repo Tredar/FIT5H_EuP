@@ -1,0 +1,153 @@
+
+
+1. Erstellen Sie eine Applikation books. (In das Richtige Verzeichnis navigieren)
+	- rails new books
+	- cd books
+
+2. Nutzen Sie für diese Applikation das CSS-Framework Foundation.
+	1) gem 'foundation-rails'		#unter Gemfile hinzufuegen
+	2) bundle install				#in Konsole
+	3) rails g foundation:install 	#in Konsole -> Y
+
+3. Erstellen Sie eine Resource (skaffold) books mit den Spalten: author, title, description (text), published_on (date)
+	rails g scaffold book author:string title:string description:text published_on:date
+
+
+4. Stellen Sie sicherm dass beim Aufruf der Seite die index-Action der Resource Books aufgerufen wird.
+	
+	routes.rb --> root 'books#index'
+	dann rake db:migrate
+
+5. Binden Sie die Topbar ein. Erstellen Sie einen link in der navigationsleiste, der auf die Index-Seite verweist.
+
+	a)    <%= javascript_include_tag "vendor/modernizr" %>		#in app/views/layouts/application.html.erb	hinzufügen
+	b)    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>		#muss auch vorhanden sein, ggf hinzufügen
+	c) unter app/assets/stylesheets unter application.css  '*= require foundation' hinzufuegen
+	d) von http://foundation.zurb.com/sites/docs/top-bar.html die topbar kopieren und unter app/views/layouts als z.B. _top_bar.html.erb speichern
+
+	f) in die application.html.erb -> '    <%= render 'layouts/top_bar' %>' hinzufuegen
+
+6. Erstellen Sie eine untergeordnete Resource Likes die eine Spalte quality (Integer) hat. Sichern Sie abm dass ein Like immer einem Book-Objekt zugeordnet ist.
+
+	rails g scaffold like quality:integer book:references
+
+	has_many in models rein
+
+	books/config/routes.rb      für untergeordnete
+		root 'books#index'
+		resources :books do
+			resources :likes
+		end
+
+		Likes/index.html.erb
+			new_book_like_path
+
+		Books/index.html.erb
+			<td> <%= link_to 'Likes' book_likes_oath(book.id) %> </td>
+
+		app/views/likes/_form.html.erb
+		<%= form_for([@book, @like]) do....   %>
+
+		app/controlers/likes_controller.rb
+
+				private
+					def set_book
+						@book = Book.find(params[:book_id])
+					end
+
+				def index
+   			 @likes = @book.likes
+  			end
+
+		    def new
+		   	 @like = @book.likes.new
+		  	end
+
+		  	def create
+		   	 @book = Book.new(book_params)
+
+		 app/views/likes/new.html.erb
+		 	book_likes_path(@book.id)
+
+
+		 	_form von like
+		 	weg
+								 	  <div class="field">
+						   		 <%= f.label :book_id %>
+						    <%= f.text_field :book_id %>
+						  </div>
+			likes/controlers.rb
+
+			def create
+			redirect_to book_like_path(@book.id, @like.id)
+
+			def update
+			redirect_to book_like_path(@book.id, @like.id)
+
+			def destroy
+			book_likes_url(@book.id)
+
+		app/views/likes/edit.html.erb
+					<%= link_to 'Show', book_like_path(@book.id, @like.id) %>
+					<%= link_to 'Back', book_like_path(@book.id) %>
+
+		app/views/likes/show.html.erb
+					<%= link_to 'Show', book_like_path(@book.id, @like.id) %>
+					<%= link_to 'Back', book_like_path(@book.id) %>
+
+		app/views/likes/index.html.erv
+		     <td><%= link_to 'Show',  book_likes_path(@book.id, like.id)  %></td>
+        <td><%= link_to 'Edit', edit_book_like_path(@book.id, like.id) %></td>
+        <td><%= link_to 'Destroy', book_likes_path(@book.id, like.id),
+
+    app/views/likes/show.html.erb
+    	@like.boook zu @like.book.title
+
+
+
+7. Stellen Sie sicherm dass der Benutzer bei der Neuanlage/Update eines Likes eine Zahl von 1 bis 5 eingegeben muss. Ansonstens wird das Formular nicht gespeichert.
+
+	likes_controller.rb folgendes hinzufügen =      before_action :set_book
+
+8. Erstellen Sie einen Viewe-Helper der für ein Book-Objekt den Durchschnitt aller Likes für dieses Objekt errechnet und auf der Book-Show-Seite ausgibt.
+
+
+
+
+	Auf der Konsole soll ein Book angelegt werden und auf der Console
+
+	Von Bogner
+	rails c
+	e= Book.new
+	e.title = "Bogner test"
+	e.autor ="Bogner"
+	e.description = "Gutes Buch"
+	e.published_on = "2015-04-19"
+	e.save
+
+	e=Book.create(title: "Steves_Buch", description: "bombe", author:"Steve Krasel")
+
+	e=Book.last
+	e.likes
+	e.likes.create(quality: 2)
+	e.likes
+
+	wenn das schief läuft einfach
+			rake db:rollback
+
+	Spalte hinzufügen oder ändern!!!!!																			wenn alles klein dann mit _
+	hinzufügen:		rails g migration add_field_to_like description:text
+	ändern: 			rails g migration change_table_like
+										in die neue magration datei also in die methode
+										def change
+											add_column :likes, :description, :string (von text auf string)
+											rename_column :likes, :desciption, :beschreibung
+										end
+										Danach rake db:migrate
+	
+	Gucken ob man noch migrate machen muss:
+	rake db:migrate:status
+
+
+e=Project.find(3)
+

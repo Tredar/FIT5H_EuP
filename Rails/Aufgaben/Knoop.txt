@@ -1,0 +1,159 @@
+1.
+	a)
+		rails g scaffold project title:string description:text start_date:datetime
+	b)
+		rake db:migrate
+	c)
+		e=Project.create(title: "Prüfungsvorbereitung EuP", description: "Alles was für EuP zu lernen ist", start_date: "2017-04-01")
+		f=Project.create(title: "Facharbeit", description: "Planen, Durchführen, Beschreiben eines Themas", start_date: "2017-02-01")
+	d)
+		In der ontrack/app/view/projects/index.html.erb 
+			<%= pluralize(@projects.count, "Project")%>
+		als <h1> tag hinzugefügt bzw. den <h1> tag bearbeitet.
+	e)
+		In der Schleife in der Datei: ontrack/app/view/projects/index.html.erb die description Zeile durch folgende ersetzt.
+			<%= truncate(project.description, length: 10) %>
+	f)
+		Im Ordner config/initializers eine neue Datei erstellt Namens: time_formats.rb
+		In dieser Datei steht folgendes:
+			Time::DATE_FORMATS[:default] = "%d.%m.%Y"
+	g)
+		In der Datei app/models/project.rb muss folgendes stehen:
+			class Project < ApplicationRecord
+				validates :title, presence: true
+			end
+	h)
+		Wurde von Ihnen Geschenkt (weil wir die Aufgabe noch nie gemacht haben)
+	i)
+		Zum hinzufügen folgendes eingeben:	
+			rails g migration add_field_to_projects end_dates:datetime
+	j)
+		Zum hinzufügen in die Tabelle:
+			rake db:migrate
+	
+	k)
+		In der Datei app/view/projects/_form.thml.erb wird folgender Div hinzugefügt, um das new.html.erb und edit.html.erb zu bearbeiten:
+			<div class="field">
+    		<%= f.label :end_dates %>
+    		<%= f.datetime_select :end_dates %>
+  		</div>
+
+  	In der Datei app/view/projects/index.html.erb:
+  		<th>End date</th>
+      <th colspan="4"></th>
+    hinzufügen, und in der Schleife:
+  		<td><%= project.end_dates %></td>
+
+  	In der Datei app/view/projects/show.html.erb wird folgendes hinzugefügt:
+  	<p>
+  		<strong>End date:</strong>
+  		<%= @project.end_dates %>
+		</p>
+	
+	l)
+		In der Datei app/controllers/projects_controller.rb wird in der Methode project_params :end_dates hinzugefügt. Sie sieht am Ende so aus:
+			def project_params
+	      params.require(:project).permit(:title, :description, :start_date, :end_dates)
+	    end
+
+
+2.
+	a)
+		In der Datei app/models/iteration.rb muss in die Class so aussehen ("belongs_to :projects" hinzugefügt):
+			class Iteration < ApplicationRecord
+  			belongs_to :project
+			end
+
+		und in der Datei app/models/project.rb muss folgendes noch in die Class:
+			has_many :iterations, dependent: :destroy
+
+	b)
+		Die config/routes.rb sieht danach wie folgt aus:
+			Rails.application.routes.draw do
+				root 'projects#index'
+  			resources :projects do
+  				resources :iterations
+  			end
+			end
+
+	c)
+		In der Datei app/controllers/projects_controller.rb muss eine Before Aktion hinzugefügt werden, die wie folgt aussieht:
+			before_action :set_project
+			
+		und eine Methode im private Bereich die so aussieht:
+			def set_project
+	      @project = Project.find(params[:project_id])
+	    end
+	
+	d)
+		In der index von Projects in der Schleife wird folgendes hinzugefügt:
+			<td><%= link_to 'Iterations', project_iterations_path(project.id) %></td>
+
+		Im Controller von Iterations muss die folgende Methode wie folgt geändert werden:
+			def index
+		    @iterations = @project.iterations
+		  end
+
+	e)
+		In der Console (rails c)
+			e=Project.find(3)
+			e.iterations.create(title: "Literatur sichten", description: "Alle über das Thema zusammensuchen", start_date: "2017-02-01", end_date: "2017-02-10")
+
+	f)
+		In der index von Iterations muss der Link für eine neue Interation wie folgt geändert werden:
+			<%= link_to 'New Iteration', new_project_iteration_path %>
+
+		Und für den Titel des Projects kann man z.B. den <h1> tag wie folgt ändern:
+			<h1>Iterations for <%= @project.title %></h1>
+
+	g)
+		Im Controller von Iterations müssen folgende Methoden geändert werden (Es werden hier nun die geänderten varrianten aufgelistet):
+			
+			def new
+		    @iteration = @project.iterations.new
+		  end
+
+				  def edit
+		  		end
+
+								 	def create
+								    @iteration = @project.iterations.new(iteration_params)
+
+								    respond_to do |format|
+								      if @iteration.save
+								        format.html { redirect_to project_iteration_path(@project.id,@iteration.id), notice: 'Iteration was successfully created.' }
+								        format.json { render :show, status: :created, location: @iteration }
+								      else
+								        format.html { render :new }
+								        format.json { render json: @iteration.errors, status: :unprocessable_entity }
+								      end
+								    end
+								  end
+
+								  # PATCH/PUT /iterations/1
+								  # PATCH/PUT /iterations/1.json
+
+		  def update
+		    respond_to do |format|
+		      if @iteration.update(iteration_params)
+		        format.html { redirect_to project_iteration_path(@project.id,@iteration.id), notice: 'Iteration was successfully updated.' }
+		        format.json { render :show, status: :ok, location: @iteration }
+		      else
+		        format.html { render :edit }
+		        format.json { render json: @iteration.errors, status: :unprocessable_entity }
+		      end
+		    end
+		  end
+
+		  # DELETE /iterations/1
+		  # DELETE /iterations/1.json
+
+	h)
+		in dem Formular der Iteration muss die erste Zeile (die Schleife) wie folgt geändert werden:
+			<%= form_for([@project, @iteration]) do |f| %>
+
+		Und der folgende Div mit der Project_id muss entfernt werden:
+			<div class="field">
+		    <%= f.label :projects_id %>
+		    <%= f.text_field :projects_id %>
+		  </div>

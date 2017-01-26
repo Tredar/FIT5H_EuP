@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Iterations for <%= @project.title %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Projects</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @iterations.each do |iteration| %>
+      <tr>
+        <td><%= iteration.title %></td>
+        <td><%= iteration.description %></td>
+        <td><%= iteration.start_date %></td>
+        <td><%= iteration.end_date %></td>
+        <td><%= iteration.projects %></td>
+        <td><%= link_to 'Show', iteration %></td>
+        <td><%= link_to 'Edit', edit_iteration_path(iteration) %></td>
+        <td><%= link_to 'Destroy', iteration, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Iteration', new_project_iteration_path %>
