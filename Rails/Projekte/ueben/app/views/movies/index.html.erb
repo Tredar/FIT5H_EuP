@@ -1,0 +1,20 @@
+<h1>Movies</h1>
+
+<table>
+	<tr>
+		<th>Titel</th>
+		<th>Bewertung</th>
+		<th>Erscheinungs Datum</th>
+		<th>Beschreibung</th>
+	</tr>
+
+<% @movies.each do |movie| %>
+		<tr>
+			<td><%= movie.title %></td>
+			<td><%= movie.rating %></td>
+			<td><%= movie.preview %></td>
+			<td><%= movie.description %></td>
+		</tr>
+	<% end %>
+</table>
+

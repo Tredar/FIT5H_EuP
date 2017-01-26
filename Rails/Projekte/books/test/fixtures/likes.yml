@@ -2,6 +2,8 @@
 
 one:
   quality: 1
+  book: one
 
 two:
   quality: 1
+  book: two

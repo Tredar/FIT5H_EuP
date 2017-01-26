@@ -1,7 +1,6 @@
 class LikesController < ApplicationController
   before_action :set_like, only: [:show, :edit, :update, :destroy]
   before_action :set_book
-
   # GET /likes
   # GET /likes.json
   def index
@@ -29,7 +28,7 @@ class LikesController < ApplicationController
 
     respond_to do |format|
       if @like.save
-        format.html { redirect_to book_like_path(@book.id,@like.id), notice: 'Like was successfully created.' }
+        format.html { redirect_to book_like_path(@book.id, @like.id), notice: 'Like was successfully created.' }
         format.json { render :show, status: :created, location: @like }
       else
         format.html { render :new }
@@ -43,7 +42,7 @@ class LikesController < ApplicationController
   def update
     respond_to do |format|
       if @like.update(like_params)
-        format.html { redirect_to book_like_path(@book.id,@like.id), notice: 'Like was successfully updated.' }
+        format.html { redirect_to book_like_path(@book.id, @like.id), notice: 'Like was successfully updated.' }
         format.json { render :show, status: :ok, location: @like }
       else
         format.html { render :edit }
@@ -67,13 +66,12 @@ class LikesController < ApplicationController
     def set_like
       @like = Like.find(params[:id])
     end
-
     def set_book
       @book = Book.find(params[:book_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def like_params
-      params.require(:like).permit(:quality)
+      params.require(:like).permit(:quality, :book_id)
     end
 end

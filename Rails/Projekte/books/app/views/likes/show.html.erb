@@ -5,5 +5,10 @@
   <%= @like.quality %>
 </p>
 
-<%= link_to 'Edit', edit_book_like_path(@like) %> |
-<%= link_to 'Back', book_likes_path %>
+<p>
+  <strong>Book:</strong>
+  <%= @like.book.title %>
+</p>
+
+<%= link_to 'Edit', edit_book_like_path(@book.id, @like.id) %> |
+<%= link_to 'Back', book_likes_path(@book.id) %>
