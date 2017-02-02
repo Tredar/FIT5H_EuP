@@ -1,0 +1,22 @@
+var = 2+2
+
+puts var
+
+tage = 365
+
+stunden = 24
+
+puts tage*stunden
+
+"Hello Ruby!"
+
+puts str.upcase
+
+ruby hello.rb
+
+hello = "Hallo Welt"
+
+3. times do puts hello end
+
+puts Time.now
+

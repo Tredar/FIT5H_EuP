@@ -1,0 +1,68 @@
+Um Ruby Code auszuführen kann ich entweder
+
+mit irb
+	eine Kosole öffnen um Life Code zu produzieren und auszuführen
+
+mit ruby <Dateiname>
+	greifen wir auf eine Datei zu, in welcher Ruby Code steht und führen diesen aus.
+
+1. erstelllen sie eine klasse Car mit den Eigenschaften: ps, typ, verbrauch
+2. Das Fahrzeug kan Beschleunigen, die Methode Beschleunigen bekommt einen Parameter zeit, 
+der die sekundenzahl des Beschleunigungsvorgangs enthählt. Ausgegeben wird die erreichte 
+Geschwindigkeit in km/h. Die Geschwindkeit wird errechnet aus PS mal Sekunden geteilt durch 100 und 
+ergibt die Einheit meter/sekunden. 
+3. erstellen sie einen Konstruktor, der für die Eigenschaft ps einen Wert erwartet, für die 
+Eigenschaft optional eine initialisierung ermöglicht
+4. legen Sie 3 Objekte von dieser Klasse an Objekt1 ps = 200 typ='Klaumich';Objekt2 ps = 80 typ '
+hauni'; Objekt 3 = 100PS
+5. Speichern Sie die Objekte in einem Array
+   Lassen Sie das Array durchlaufen geben Sie den Typ aus, wenn kein Typ angegeben ist soll "Kein 
+   Wert" ausgegeben werden.
+6. Legen Sie drei weitere Objekte von der Klasse Car an. Die Daten stehen in einem hash, wobei die 
+erste Position die den Typ und die zweite Postion PS
+enthält: vals = { 'BMW'	=> 200, 'trabbi' => 150, 'Honda'=> 20}. Lassen Sie den Hash durchlaufen, 
+erzeugen jeweils ein Car Objekt und legen dieses im Array cars2 ab.
+7. Erstellen Sie eine Klasse 'Driver'. mit der Eigenschaft "name" die im Konstrukor gesetzt werden 
+muss.
+Es gibt ein Array cars, dass im Konstruktor initialisiert wird.
+Es gibt eine methode add_cars mit der für das Driver Objekt ein fahrzeug hinzugefügt werden kann.
+Es gibt eine Ausgabe show_cars die die Fahrzeuge mit der typenbezeichnung auflistet.
+Legen Sie ein Objekt Theo an und fügen Sie von den car arrays jeweils das erste dem Driver Objekt zu.
+Lassen Sie die Daten der zugeordneten Fahrzeuge ausgeben. 
+__________________________
+	elsif = else if
+
+	public
+		Allgemeiner bereich für Mehtoden, diese sind von aussen zugängich
+	private
+		Mehtode nur innerhalb der Klasse
+	protected
+		methoden um mit Vererbung zu arbeiten  
+______________________________________________________________________________________________________
+Ruby spezifsiches Problem
+	Es gibt für eine if Version eine Kurzform 
+		Variblae gegen 1 einzige bedigung prüfen geht mit @ps = ps if ps > 0 
+______________________________________________________________________________________________________
+3 Sätze zu Klassen
+
+	- Es ist ein Bauplan
+	- ich habe die Möglichkeit geschaffen Objekte zu erschaffen
+	- Besteht aus Eigenschaften(Instanzvariablen, Methoden) und Fähigkeiten(Definiert in Methoden)
+______________________________________________________________________________________________________
+Anmerkung zu Aufgabe 1: 
+
+	Eigenschaften haben nichts  mit der initialize Methode zu tun
+		- Sie werden im attr_accessor definiert
+
+	Erweiterung von Aufgabe 1 z.B. 
+	"stellen Sie sicher das die Eigenschaft typ beim ersten Buchstaben
+	einen Großbuchstaben erstellt"
+	"Stellen Sie sicher, dass bei der Eingabe einer Zahl keine Ausnahme geworfen wird"
+
+	2te erweiterung
+	"Stelen Sie sicher, dass es sich bei typ um einen String handelt der mind. 3 Ziffern lang ist"
+
+	3te erweiterung
+	"Stelen Sie sicher, dass es sich bei typ um einen String handelt der mind. 3 Ziffern lang ist"
+	"Stellen Sie sicher das die Instanzvaraible Ps nur dann gefüllt wird, wenn es sich um einen Positivien Wert größer als Null handelt"
+ 

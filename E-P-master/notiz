@@ -1,0 +1,157 @@
+Rails installieren:
+	echo "gem: --no-ri --no-rdoc" > ~/.gemrc
+	gem update
+	gem install rails
+
+	Danach mit "rails -v" prüfen ob installiert ist. 
+
+neues Rails Projekt 
+	Im Projekt Ordner "rails new rails_app" ausführen
+	 
+Rails Projekt starten
+	Im erstellen rails_app Ordner "rails s" ausführen um den Server zu starten <- führte zu Error 		bezüglich Javascript
+
+In Sublime den Projekt Ordner "rails_app" öffnen um eine übersichtliche Darstellung zu bekommen
+
+gem 'therubyracer', platforms: :ruby zeile 17 des Gemfile muss aktiviert werden, indem das Kommentarzeichen entfernt wird
+
+In der Konsole "bundle install" ausführen um die Änderung zu aktivieren
+
+Wiederholen von "rails -s"
+
+Im Internetzbrauser "localhost:3000" eingeben, um zu prüfen ob der Server läuft
+
+in config->routes.rb den get Pfad für events#index hinzufügen
+	get "events" => "events#index"
+-> Führt zu Fehler
+
+in app->controllers wird in der nun vorhandenen datei "events controller" eine neue methode erstellt 
+	def index
+		
+	end
+->Führt zu neuem Fehler, weil jetzt noch Template fehlt
+
+Wir gehen in den view->events und erstellen eine Datei die wir
+	index.html.erb 
+nennen
+
+Wir führen im rails_app ordner
+	rails g model event name:string location:string price:decimal
+	Dies erstellt uns versch. Datein u.a. einen Wrapper für eine Tabelle
+	
+	Es wird folgendes erstellt:
+		models>event.rb
+		db>migrate>256456275
+
+Wir führen im rails_app ordner
+	rake db:migrate aus
+	Um die Tabelle zu erstellen 
+
+_____________________________
+
+Hauptsächlich wird man beim Programmieren in den Unterordnern:
+	controllers 
+		Hier kommt die Logik rein
+		(Useranmeldung z.B.)
+	models
+		Hier ist alles was mit den Daten zu tun hat 
+	view 
+		Hier soll alles niedergeschrieben werden, was mit der Darstellung zu tun hat 
+		(In unserem Fall HTML)
+vom Ordner "app" arbeiten. 
+
+Weitere Ordner:
+	assets
+		Hier steckt alles aus dem Bereich Javascript und CSS drin
+	public
+		CSS Datein und Bilder sind hier anwesend,
+		da nur auf diesen Ordner von außen zugegriffen
+		werden kann (war bis V.3 so, jetzt ist es in assets)
+
+
+Rails besteht aus gem's 
+	rails gem
+		Das rails
+	puma
+		Der Server
+	sqlite 
+		Kleine Datenbank
+
+
+Rails Generator
+	rails g
+		bietet versch. Generatoren um Dinge zu tun
+			rails g controller movies
+
+Wie geht Rails mit DBs um?
+	Es gibt Postgrs, Oracle, Access, SQLlite, SQL
+	
+	Rails interessiert es nicht, der Programmier legt es einmal fest was er verwendet
+	und rails macht nur die Wrapper
+
+	In dem config Ordner gibt es enviroments der Standardmäßig 3 Dateien enthält 
+		development
+		test
+		production
+
+	man kann für jede Umgebung definieren, welche DB verwendet wird
+		Einstellung ist in config->database.yml zu finden
+
+Literaturverzeichnis:
+	upskillcourses
+	Michaelhartl
+	ruby auf schienen
+	pragprog.com
+		Sam ruby und dave thomas
+	michael wintermeyer
+	pragmaticstudio.com
+	rails guides
+
+
+______________________
+______________________
+
+%NamederKlasseinModel%.all
+	Listet alle Inhalte von der Tabelle "events" auf 
+
+Alegen eines Datensatzes:
+	e = Event.new
+	e.name = "weihnachten"
+	e.datum = "2016-12-31"
+	e.save  
+
+Andere Methode zum Datensatz anlegen in einer Zeile 
+	Event.create(name: " ", datum: " ")
+
+erstellen einer migrate Datei um Änderungen an der Tabelle zu machen
+	rails g migration AddFiledsToEvents start_date:datetime description:text
+
+Abfrage des Status der DB
+	rake db:migrate:status 
+
+Änderungen durchführen
+	rake db:migrate
+
+Seed Datei in DB übertragen
+	rake db:seed
+___________________________
+13.12: Layout
+___________________________
+
+Es gibt mehrere Mögliche Frameworks, welche genutzt werden können. 
+
+foundation.zurb.com/sites/docs/
+
+_____
+Validierungen werden in Models definiert.
+
+eigens zu diesen Validatern gibt es eine doku bei http://guides.rubyonrails.org/active_record_validations.html
+
+
+
+
+
+
+	
+
+

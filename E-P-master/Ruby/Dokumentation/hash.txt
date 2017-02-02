@@ -1,0 +1,25 @@
+puts names.sort by {|n| n.length}.reverse.class
+	#gibt "Array" aus, da die Klasse ein Array ist
+
+cars = {}
+cars = {'eins' => 'BMW', 'zwei' => 'Audi'}
+	#erstellt ein assosiatives array
+
+cars['zwei'] 
+	#gibt "Audi" aus
+
+
+Ein hash ist ein Array mit einem selbstidentifizierenden Index
+	cars = {'eins' => 'BMW', 'zwei' => 'Audi'}
+
+Der Entwickler von Ruby hat aus Performancegründen für den hash index da symbol vorgesehen:
+		cars = {:eins => 'BMW', :zwei => 'Audi'}
+
+Kurzschreibweise
+		cars = {eins: 'BMW', zwei: 'Audi'}
+
+Iteration über einen Hash:
+	cars.each do |key, val|
+		puts "index: {#key} ist ein #{val}"
+	end
+	

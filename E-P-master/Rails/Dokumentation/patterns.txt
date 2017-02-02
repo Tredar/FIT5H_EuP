@@ -1,0 +1,30 @@
+MVC
+	Model - View - Controller auf verschiedenen, voneinander getrennten Ebenen
+
+Convention Over Configuration
+	Es gibt Regeln die eine Automatisierung durch den Rails generator ermöglichen
+	z.B.:
+		controller sind immer im Plural und die Klasse wird im Camelcasing benannt:
+			movies_controller.rb
+				class MoviesController
+		
+		models sind immer im Singular benannt:
+			app/models/event.rb
+				class Event
+		
+		Die Tabellen, die zu den Models gehören sind immer im Plural 
+			Tabelle heißt: events
+
+	Prinzip der geringsten Überrauschung
+		Der user sollte Funktionen und Methoden erraten können
+
+CRUD(Create - Read - Update - Delete)
+	Die Standardactions einer Webanwendung:
+		index: alle Elemente werden gezeigt 
+		show: ein einzenes Element wird angezeigt
+		new: Formular zur Erzeugung eines Elements
+		create: Action zum speichern eines neuen Elements
+		edit: Formular zum Ändern eines Elements
+		update: Action zur Durchführung der Ändeurng in der Tabelle
+		destroy: Action zum Löschen eines Elements
+		

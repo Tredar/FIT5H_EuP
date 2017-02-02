@@ -1,0 +1,37 @@
+ES gibt Helper sowohl auf der Darstellungsebene (View-Html-Bereich) aus auch auf der Logik-Ebene im Bereich der Controller.
+\par\vspace{5mm}\noindent
+VIEW-Ebene\par\noindent
+a. bereitgestellte Helper\par\noindent
+Helper, die von den Rails-Entwicklern zur Verfügung gestellt werden. \par\noindent
+Links:\href{http://api.rubyonrails.org/classes/ActionView/Helpers.html}{Ruby on Rails Helper-Liste}\par\noindent
+Beispiele:\par\noindent
+\hspace{3mm}truncate\par\noindent
+\hspace{3mm}content_tag\par\noindent
+\hspace{3mm}number_to_currency\par\vspace{3mm}\noindent
+b. eigene Helper\par\noindent
+Gründe\par\noindent
+\begin{itemize}
+\item falls kein imannenter Helper zur Verfügung steht
+\item wenn ein Helper den Code in der HTML-Datei übersichtlicher/eleganter macht
+\item wenn Code sonst doppelt vorkommt
+\end{itemize}
+Es gibt im Bereich app einen speziellen Ordner helpers, in dem der Rails-Server bei jedem Aufruf der Seite nach Funktionen 
+scannt. Dort werden eigene Helper als einfache Methoden definiert.\par\noindent
+Beispiel:\par\noindent
+\hspace{3mm}Definition\par\noindent
+\hspace{3mm}tapp/helpers/events_helper.rb\par\noindent
+\begin{lstlising}
+		def format\_price(event)
+			if event.free?
+				#<strong>Free</strong>".html_safe
+				content_tag(:strong, 'FREE')
+			else
+				number_to_currency event.price
+			end
+
+		end
+\end{lstlisting}
+\hspace{3mm}tAufruf:\par\noindent
+\hspace{3mm}tapp/views/events/index.html.erb\par\noindent
+\hspace{7mm}t<\%= format\_price(event) \%>\par\noindent
+
