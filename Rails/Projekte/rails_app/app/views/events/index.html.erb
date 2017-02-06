@@ -7,10 +7,14 @@
 		<th>Ort</th>
 		<th>Preis</th>
 		<th>Beginn</th>
-		<th>Registrierung</th>
-		<th>Show</th>
-		<th>Edit</th>
-		<th>Del</th>
+		<% if current_user %>
+			<th>Registrierungen</th>
+			<th>Show</th>
+			<% if current_user_admin? %>
+				<th>Edit</th>
+				<th>Löschen</th>
+			<% end %>
+		<% end %>
 	</tr>
 
 	<% @events.each do |event| %>
@@ -20,13 +24,17 @@
 			<td><%= event.location %></td>
 			<td><%= format_price(event) %></td>
 			<td><%= event.start_date %></td>
-			<td><%= link_to "Registrations", event_registrations_path(event.id) %></td>
-			<td><%= link_to "Show", event_path(event.id) %></td>
-			<td><%= link_to "Edit", edit_event_path(event.id) %></td>
-			<td><%= link_to "Del", event_path(event.id), method: :delete, data: {confirm: "Sicher Löschen?"} %></td>
+			<% if current_user %>
+				<td><%= link_to "Registrations", event_registrations_path(event.id) %></td>
+				<td><%= link_to "Show", event_path(event.id) %></td>
+				<% if current_user_admin? %>
+					<td><%= link_to "Edit", edit_event_path(event.id) %></td>
+					<td><%= link_to "Delete", event_path(event.id), method: :delete, data: {confirm: 'Sicher löschen?'} %></td>
+				<% end %>
+			<% end %>
 		</tr>
 	<% end %>
 
 </table>
 
-<p><%= link_to "Neues Event", new_event_path  %></p>
+<p><%= link_to "Neuen Event", new_event_path if current_user_admin? %></p>

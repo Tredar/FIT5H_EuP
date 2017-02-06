@@ -3,6 +3,7 @@ class Event < ApplicationRecord
 
 	validates :name, :description, :location, presence: true
 	validates :description, length: { minimum: 25 }
+	validates :location, presence:true
 	validates :price, numericality: {greater_than_or_equal_to: 0 }
 	
 

@@ -1,7 +1,8 @@
 class RegistrationsController < ApplicationController
   before_action :set_registration, only: [:show, :edit, :update, :destroy]
   before_action :set_event
-
+  before_action :require_signin
+  before_action :require_equal_user, only: [:edit, :update, :destroy]
   # GET /registrations
   # GET /registrations.json
   def index
@@ -26,7 +27,7 @@ class RegistrationsController < ApplicationController
   # POST /registrations.json
   def create
     @registration = @event.registrations.new(registration_params)
-
+    @registration.user_id = current_user.id
     respond_to do |format|
       if @registration.save
         format.html { redirect_to event_registration_path(@event.id, @registration.id), notice: 'Registration was successfully created.' }
@@ -68,6 +69,12 @@ class RegistrationsController < ApplicationController
       @registration = Registration.find(params[:id])
     end
 
+    def require_equal_user
+      if @registration.user != current_user
+        redirect_to root_path, alert: "Das darf nur der, dem die Registrierung gehört!"
+      end
+    end
+    
     def set_event
       @event = Event.find(params[:event_id])
     end
