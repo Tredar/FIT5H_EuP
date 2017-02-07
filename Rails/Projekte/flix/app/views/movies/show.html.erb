@@ -11,4 +11,22 @@
 <h3>Price</h3>
 <p><%=  @movie.total_gross %></p>
 
+<p>
+	<% if favorit = Favorit.where(user_id: current_user.id, movie_id: @movie.id).first %>
+		<%= link_to 'Favorisierung Entfernen', movie_favorit_path(@movie.id, favorit.id), method: :delete, class: 'button alert' %>
+	<% else %>
+		<%= button_to 'Favorit', movie_favorits_path(@movie), class: 'button primary' %>
+	<% end %>
+</p>
+
+<% if @favoriters.any? %>
+	<h3>Favorits</h3>
+		<ul>
+			<% @favoriters.each do |user| %>
+				<li><%= user.name %></li>
+			<% end %>			
+		</ul>
+
+<% end %>
+
 <p><%= link_to "Back", movies_path %></p>

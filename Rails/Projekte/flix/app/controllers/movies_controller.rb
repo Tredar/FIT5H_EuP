@@ -8,6 +8,7 @@ class MoviesController < ApplicationController
 
 	def show
 		@movie = Movie.find(params[:id])
+		@favoriters = @movie.favoriters
 	end
 
 	def new
