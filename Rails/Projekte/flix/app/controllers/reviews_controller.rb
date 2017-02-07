@@ -1,7 +1,8 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
   before_action :set_movie
-
+  before_action :require_signin
+  before_action :require_equal_user, only: [:edit, :update, :destroy]
   # GET /reviews
   # GET /reviews.json
   def index
@@ -26,7 +27,7 @@ class ReviewsController < ApplicationController
   # POST /reviews.json
   def create
     @review = @movie.reviews.new(review_params)
-
+    @review.user_id = current_user.id
     respond_to do |format|
       if @review.save
         format.html { redirect_to movie_review_path(@movie.id, @review.id), notice: 'Review was successfully created.' }
@@ -68,6 +69,12 @@ class ReviewsController < ApplicationController
       @review = Review.find(params[:id])
     end
 
+    def require_equal_user
+      if @registration.user != current_user
+        redirect_to root_path, alert: "Das darf nur der, dem die Registrierung gehört!"
+      end
+    end
+    
     def set_movie
       @movie = Movie.find(params[:movie_id])
     end
