@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<% if current_user_admin? %>
+  <h1>Users</h1>
+<% elsif current_user %>
+  <h1>Profil</h1>
+<% end %>
+<table>
+  <thead>
+    <tr>
+      <th>Login</th>
+      <th>Email</th>
+      <% if current_user_admin? %>
+        <th>Admin</th>
+        <th>Active</th>
+      <% end %>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+     <% if current_user_admin? || current_user == user %>
+      <tr>
+        <td><%= user.login %></td>
+        <td><%= user.email %></td>
+        <td><%= user.admin if current_user_admin? %></td>
+        <td><%= user.active if current_user_admin? %></td>
+        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if current_user_admin? %>
+  <%= link_to 'New User', new_user_path %>
+<% end %>

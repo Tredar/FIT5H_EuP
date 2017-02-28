@@ -1,0 +1,33 @@
+<table>
+  <thead>
+    <tr>
+      <th>Lending date</th>
+      <th>Return date</th>
+      <th>Book</th>
+      <th><%= 'Users' if current_user_admin? %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% lendings.each do |lending| %>
+      <% if current_user_admin? || current_user == lending.user %>
+        <tr>
+          <td><%= lending.lending_date %></td>
+          <td><%= lending.return_date %></td>
+          <td><%= lending.book.title %></td>
+          <td><%= lending.user.login if lending.user && current_user_admin? %></td>
+          <% if lending.return_date == nil %>
+            <td><%= button_to 'Rückgabe', user_lending_path(current_user.id, lending.id), method: :patch %></td>
+          <% else %>
+            <td>Zurückgegeben</td>
+          <% end %>
+          <% if current_user_admin? %>
+            <td><%= link_to 'Edit', edit_user_lending_path(current_user.id, lending) %></td>
+            <td><%= link_to 'Destroy', user_lending_path(current_user.id, lending), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
